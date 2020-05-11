@@ -20,3 +20,12 @@
 //     console.log(event); //the event details
 //     console.log(event.target); //the clicked element
 // }, false);
+
+//When the user clicks the checkbox, the password should become visible
+function showPassword(){
+
+};
+    //When the user makes an entry into the 'password' field, 
+    //check to see whether the box is checked. 
+
+    //If the box is not checked, hide the password. If it's checked, display it. 
