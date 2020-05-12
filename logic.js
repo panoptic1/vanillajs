@@ -1,7 +1,7 @@
 //Day 1
 //Getting an element from the DOM with querySelector
 //The first div...
-// const elem = document.querySelector('div');
+// const elem = document.querySelector('#show-password');
 // console.log(elem);
 
 // The first heading...
@@ -21,11 +21,24 @@
 //     console.log(event.target); //the clicked element
 // }, false);
 
-//When the user clicks the checkbox, the password should become visible
-function showPassword(){
 
-};
-    //When the user makes an entry into the 'password' field, 
-    //check to see whether the box is checked. 
 
-    //If the box is not checked, hide the password. If it's checked, display it. 
+
+//VARIABLES=============================================================
+const password = document.querySelector('#password');
+const checkBox = document.querySelector('#show-password');
+
+//Create a function that converts the input of the password field when checkbox is toggled
+function convertPassword(){
+    if(checkBox.checked){
+        //console.log("Nice password!");
+        password.type = 'text';
+    } else {
+        password.type = 'password';
+    }
+}
+
+//When the user clicks the checkbox, run the convertPassword function
+checkBox.addEventListener('click', function(event){
+    convertPassword();
+}, false);
