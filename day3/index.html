@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label for="current-password">Current Password</label>
+            <input class="password" type="password" name="current-password" id="current-password">
+        </div>
+
+        <div>
+            <label for="new-password">New Password</label>
+            <input class="password" type="password" name="new-password" id="new-password">
+        </div>
+
+        <div>
+            <label for="show-passwords">
+                <input type="checkbox" name="show-passwords" id="show-passwords">
+                Show passwords
+            </label>
+        </div>
+
+        <p>
+            <button type="submit">Change Passwords</button>
+        </p>
+
+        <!-- Part of exercise on line 40
+        <p class="family">Ryan</p>
+        <p class="family">Jazmin</p>
+        <p class="family">Damon</p>
+        <p class="family">Rosalyn</p>
+        -->
+
+    </form>
+
+    <!-- I was playing around with turning html elements into an array in the following snippet
+    <script>
+
+        const family = Array.prototype.slice.call(document.querySelectorAll(".family"));
+        console.log(family); //Returns the Array version of the original Node List. YAY!!!
+        family.forEach(function (member, index) {
+            console.log(member.textContent); //Returns 'Undefined'. WHY?!?!
+        });
+
+
+    </script> -->
+
+    <script src="logic.js"></script>
+</body>
+
+</html>
