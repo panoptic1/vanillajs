@@ -1,9 +1,10 @@
+//GET, SET, REMOVE, & CHECK ATTRIBUTES FROM YOUR ELEMENTS
 //The  '.matches()' method...
 //what it does:
 //returns a boolean confirming whether or not an element that you pass into it exists in the DOM
 
 //VARIABLES
-const elemRed = document.querySelector(`.red`);
+const elemRed = document.querySelector(`#red`);
 const elemSon = document.querySelector(`[data-child="damon"]`);
 const margarita = document.querySelector('#margarita');
 //get an attribute from the paragraph
@@ -37,4 +38,16 @@ window.addEventListener('click', function(event){
 margarita.setAttribute('data-cordial', 'grandMarnier');
 
 console.log(margarita);
+console.log(cordial);// it would seem that while the 'data-cordial' value was changed by '.setAttibute',
+//the value of the 'cordial' variable remains in its original state when logged 
+
+//remove the 'data-sweetener' selector for the margarita variable
+//margarita.removeAttribute('data-sweetener');
+
+//check to see if there is sweetener in the margarita or not
+if (margarita.hasAttribute('data-sweetener')) {
+    console.log("It's a sweet one!")
+} else {
+    console.log("It's a skinny one!")
+}
 

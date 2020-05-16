@@ -3,15 +3,15 @@ div {
     padding: 20px;
 }
 
-.red {
+#red {
     background-color: red;
 }
 
-.green {
+#green {
     background-color: green;
 }
 
-.blue {
+#blue {
     background-color: blue;
 }
 
