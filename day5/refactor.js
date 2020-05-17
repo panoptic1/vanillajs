@@ -18,7 +18,7 @@ document.addEventListener('click', function (event){
 
     //create a variable that gets the value of the [data-pw-toggle] attribute in every element where it appears
     const passwords = Array.prototype.slice.call(document.querySelectorAll(event.target.getAttribute('data-pw-toggle')))
-    //console.log(passwords)
+    console.log(passwords)
 
     //loop through each password field
     passwords.forEach(function (password) {
