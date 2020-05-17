@@ -32,3 +32,7 @@ document.addEventListener('click', function (event){
 });
 
 //console.log(document); //(log in case you are wondering: "What is this 'document' you speak of?")
+
+//The advantage that this approach provides versus the technique that I used for the solution is that I don't have to 
+//target every specific element and write separate functions for each. As such, I can add as many elements I want
+//to the markup without having to add any more scripts, as long as the elements include the 'data-pw-toggle' convention
