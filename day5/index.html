@@ -10,12 +10,11 @@
 
 <body>
     <!--    the following code was linked with the './notes.js' file
-    <div class="box" data-dog="russell" id="red">Red</div>
+    <div class="box" data-dog="fido" id="red">Red</div>
     <div class="box" data-child="damon" id="green">Green</div>
     <div class="box" data-fruit="blueberry" id="blue">Blue</div>
     <p id="margarita" data-liquor="tequila" data-cordial="cointreau" data-juice="lime" data-sweetener="agave">Margarita
-    </p>
-    -->
+    </p> -->
 
     <h2>Change Username</h2>
 
@@ -34,7 +33,7 @@
 
         <div>
             <label for="show-password">
-                <input type="checkbox" name="show-passwords" id="show-password">
+                <input type="checkbox" name="show-passwords" id="show-password" data-pw-toggle="#password">
                 Show password
             </label>
         </div>
@@ -61,7 +60,8 @@
 
         <div>
             <label for="show-passwords">
-                <input type="checkbox" name="show-passwords" id="show-passwords">
+                <input type="checkbox" name="show-passwords" id="show-passwords"
+                    data-pw-toggle="#current-password, #new-password">
                 Show passwords
             </label>
         </div>
@@ -71,7 +71,8 @@
         </p>
     </form>
 
-    <script src="solution.js"></script>
+    <script src="refactor.js"></script>
 </body>
+
 
 </html>
