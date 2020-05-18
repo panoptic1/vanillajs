@@ -11,7 +11,7 @@ document.addEventListener('input', function(event){
     //declare variable that targets the text content of the span
     let count = document.querySelector('#character-count');
     
-    //print a new value to span by setting textContent to text
+    //print a new value to span by setting 'count.textContent' to the value of 'text'
     count.textContent = text
 
 })
