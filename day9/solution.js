@@ -10,7 +10,7 @@ document.addEventListener('input', function(event){
 
     //declare a variable called 'words' to target the number of words written into the <textarea> element by the user
     //use the split method to determine how many words are in the textarea
-    //let words = document.querySelector('#text').split(' ')
+    let words = document.querySelector('#text').value.split(' ');
 
     //declare a variable called 'characterCount' that targets the span for the character counter
     //set the value of 'characterCount.textContent' to 'characters'
@@ -19,6 +19,8 @@ document.addEventListener('input', function(event){
 
     //declare a variable called 'wordCount' that targets the span for the word counter
     //set the value of 'wordCount.textContent' to 'words'
+    let wordCount = document.querySelector('#word-count');
+    wordCount.textContent = words.length - 1
 })
 
 
