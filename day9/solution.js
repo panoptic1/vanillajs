@@ -18,7 +18,7 @@ document.addEventListener('input', function(event){
     characterCount.textContent = characters
 
     //declare a variable called 'wordCount' that targets the span for the word counter
-    //set the value of 'wordCount.textContent' to 'words'
+    //set the value of 'wordCount.textContent' to 'words.length'
     let wordCount = document.querySelector('#word-count');
     wordCount.textContent = words.length - 1
 })
