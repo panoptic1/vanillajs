@@ -2,7 +2,7 @@
 document.addEventListener('input', function(event){
     
     //declare a variable that will target the input inside the textarea
-    let text = document.querySelector('#text').value
+    let text = document.querySelector('#text').value.length;
     //set the text variable to the length of the input
     text == text.length;
     //convert the value for text from a number to a string
