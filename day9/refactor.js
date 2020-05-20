@@ -7,7 +7,7 @@ var charCount = document.querySelector("#character-count")
 text.addEventListener('input', function () {
 
     //get the word count
-    var words = text.value.split(/[\n\r\s]+/g).filter(function (word) {
+    var words = text.value.split(/[\n\r\s]+/g).filter(function (word) { //see: RegEx patterns as they pertain to .split
         return word.length > 0
     });
 
