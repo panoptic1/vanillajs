@@ -16,4 +16,5 @@ text.addEventListener('input', function () {
 
     //display the character count
     charCount.textContent = text.value.length
+
 })
