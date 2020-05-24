@@ -1,7 +1,6 @@
 //Write variables for the 'More Ron' button and the blockquote element
 const button = document.querySelector("button")
-
-
+const block = document.querySelector("blockquote")
 
 //Create an event listener for a click event on the More Ron button
 button.addEventListener('click', function(event){
@@ -12,11 +11,10 @@ button.addEventListener('click', function(event){
             fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes').then(function (response){
             return response.json();
             }).then(function (data){
-            //console.log("success!", data);
 
-            //convert the data into an array
+            //convert data into an array and set the value of block to data
             Array.prototype.slice.call(data);
-            console.log("data arrayified: " +  data)
+            block.innerText = data
 
             }).catch(function (err){
             console.warn("doh!", err);
