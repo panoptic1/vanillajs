@@ -20,4 +20,4 @@ var getQuote = function () {
 
 btn.addEventListener('click', function(){
     getQuote();
-})
+});
