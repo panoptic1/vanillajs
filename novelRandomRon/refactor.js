@@ -30,7 +30,6 @@ var getNovelQuote = function (){
         if (usedQuotes.length > 50) {
             usedQuotes = [];
         }
-        console.table(usedQuotes);
     }).catch( function (error){
         quote.textContent = "Something went wrong here. I have a joke for you: the government in this town is excellent and uses your tax dollars efficiently.";
     });
