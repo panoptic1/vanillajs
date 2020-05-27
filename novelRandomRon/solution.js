@@ -20,6 +20,7 @@ var getNovelQuote = function () {
         if (usedQuotes.includes(data[0])){
             //if it does already exist in the array, run the function again.
             console.log("Shoot, that's already here!");
+            quote.textContent = "I can't seem to recall anything novel right now...I'm going to blame the scotch."
             getNovelQuote();
         } else {
             //if it doesn't already exist in the usedQuotes array, push it into the array
