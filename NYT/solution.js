@@ -1,11 +1,10 @@
-console.log("I'm gonna wreck it!");
-
 //Create a variable for the app div
+var key = `v4gKfXgZRwrNFYXJmdQ6WUrs9ZF3ABzc`
 
 //Ping the NYT API
 var getNews = function () {
     //get the news from the API
-    fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=v4gKfXgZRwrNFYXJmdQ6WUrs9ZF3ABzc`).then( function (response){
+    fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=` + key).then( function (response){
         if (response.ok) {
             console.log("You got it dude!")
             return response.json();
@@ -23,7 +22,7 @@ var getNews = function () {
                         <h4>` + result.abstract + `</h4>
                         <a href="${result.url}> Click here to read more.</a>
                     </div>`
-        })
+        }).join('');
     }).catch(function (error){
         console.log("Error!");
     });
