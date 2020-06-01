@@ -19,10 +19,10 @@ var getNews = function () {
             return `<div>
                         <h2>` + result.title + `</h2>
                         <h6>` + result.byline + `</h6>
-                        <h4>` + result.abstract + `</h4>
-                        <a href="${result.url}> Click here to read more.</a>
+                        <p>` + result.abstract + `</p>
+                        <a href="${result.url}"> Click here to read more.</a>
                     </div>`
-        }).join('');
+        }).join();
     }).catch(function (error){
         console.log("Error!");
     });
