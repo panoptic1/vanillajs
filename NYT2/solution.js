@@ -29,7 +29,7 @@ var getFirstFew = function (articles) {
 }
 
 var getArticles = function (section) {
-    fetch(`https://api.nytimes.com/svc/topstories/v2/1` + section + `.json?api-key=` + key)
+    fetch(`https://api.nytimes.com/svc/topstories/v2/` + section + `.json?api-key=` + key)
     .then( function (response){
         if (response.ok) {
             return response.json();
@@ -39,9 +39,11 @@ var getArticles = function (section) {
         var firstFew = getFirstFew(data.results);
 
         //render them into the DOM
-        
+        render(firstFew, section);
 
     })
 };
 
-getArticles();
+sections.forEach( function (section) {
+    getArticles(section);
+})
