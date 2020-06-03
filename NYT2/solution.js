@@ -47,3 +47,5 @@ var getArticles = function (section) {
 sections.forEach( function (section) {
     getArticles(section);
 })
+
+//This entire solution was based on the one provided by @cferdinandi
