@@ -41,6 +41,8 @@
 
     <div id="app"></div>
 
+    <button id="shuffle">Shuffle those monsters!</button>
+
     <footer>
         <hr>
         <p class="text-small text-muted">Icons by <a href="https://thenounproject.com/term/door/311732/">Jamie
@@ -72,27 +74,46 @@
             'sock'
         ];
 
-        //Load the monsters into the markup upon page load
-        app.innerHTML = monsters.map(function (monster) {
-            return `<img class="grid" src="` + monster + `.svg" alt="` + monster + `">`
+        function display(array) {
+            app.innerHTML = array.map(function (i) {
+                return `<img class="grid" src="` + i + `.svg" alt="` + i + `">`
+            });
+        }
+
+        display(monsters);
+
+        //declare a variable to capture the button
+        var button = document.querySelector("#shuffle");
+
+        //Write a function that shuffles array indexes with the FY algorithm
+        var shuffle = function (array) {
+
+            var currentIndex = array.length;
+            var temporaryValue, randomIndex;
+
+            //While there remains an index to shuffle...
+            while (0 !== currentIndex) {
+                //pick a remaining element
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                //and swap it with the current element
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array
+
+        };
+
+        //create an event listener that runs the shuffle function and renders the content when the button is pushed
+        button.addEventListener('click', function () {
+            shuffle(monsters);
+            display(monsters);
+
         });
 
-        //declare a variable to capture the array value
-        var display = app.innerHTML;
-
-        console.log(display);
-
-        //create a button that triggers the shuffleMonsters function
-
-        //Write a function that shuffles the monsters with the FY algorithm
-        var shuffleMonsters = function (monsters) {
-
-            var currentIndex = array.Length;
-            var temporaryValue
-
-
-            //use app.innerHTML to render the shuffled array
-        }
     </script>
 </body>
 
