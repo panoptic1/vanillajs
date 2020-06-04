@@ -72,9 +72,27 @@
             'sock'
         ];
 
+        //Load the monsters into the markup upon page load
         app.innerHTML = monsters.map(function (monster) {
-            return `<img src="` + monster + `.svg" alt="` + monster + `">`
+            return `<img class="grid" src="` + monster + `.svg" alt="` + monster + `">`
         });
+
+        //declare a variable to capture the array value
+        var display = app.innerHTML;
+
+        console.log(display);
+
+        //create a button that triggers the shuffleMonsters function
+
+        //Write a function that shuffles the monsters with the FY algorithm
+        var shuffleMonsters = function (monsters) {
+
+            var currentIndex = array.Length;
+            var temporaryValue
+
+
+            //use app.innerHTML to render the shuffled array
+        }
     </script>
 </body>
 
