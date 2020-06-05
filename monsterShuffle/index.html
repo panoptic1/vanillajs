@@ -74,18 +74,20 @@
             'sock'
         ];
 
+        //write a function that will display the array in whatever form it is currently in when it gets called
         function display(array) {
             app.innerHTML = array.map(function (i) {
                 return `<img class="grid" src="` + i + `.svg" alt="` + i + `">`
             });
         }
 
+        //render the array of images to the page on screen load
         display(monsters);
 
         //declare a variable to capture the button
         var button = document.querySelector("#shuffle");
 
-        //Write a function that shuffles array indexes with the FY algorithm
+        //Write a function that shuffles array with the FY algorithm
         var shuffle = function (array) {
 
             var currentIndex = array.length;
@@ -107,7 +109,7 @@
 
         };
 
-        //create an event listener that runs the shuffle function and renders the content when the button is pushed
+        //create an event listener that runs the shuffle function and renders the shuffled content when the button is pushed
         button.addEventListener('click', function () {
             shuffle(monsters);
             display(monsters);
