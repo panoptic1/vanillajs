@@ -1,3 +1,23 @@
+/**
+ * Element.closest() polyfill
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+ */
+if (!Element.prototype.closest) {
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+	Element.prototype.closest = function (s) {
+		var el = this;
+		var ancestor = this;
+		if (!document.documentElement.contains(el)) return null;
+		do {
+			if (ancestor.matches(s)) return ancestor;
+			ancestor = ancestor.parentElement;
+		} while (ancestor !== null);
+		return null;
+	};
+}
+
 // The monsters and socks
 var monsters = [
     'monster1',
@@ -13,6 +33,9 @@ var monsters = [
     'monster11',
     'sock'
 ];
+
+//The door
+var door = `door`
 
 // Get the #app element
 var app = document.querySelector('#app');
@@ -51,7 +74,18 @@ shuffle(monsters);
 app.innerHTML = '<div class="row">' + monsters.map(function (monster) {
     var html =
         '<div class="grid">' +
-        '<img alt="' + monster + '" src="' + monster + '.svg">' +
+        //add a data- attribute to target the pictures of each monster
+        '<img id="pic" alt="' + door + '" src="' + door + '.svg" data-monster="' + monster + '">' +
         '</div>';
+    console.log(html);
     return html;
+
 }).join('') + '</div>';
+
+//Write a function that 'opens the door' and reveals the image behind it
+function openDoor(){
+    var monster = elem
+}
+//Create an event listener with elem.closest that listens for user clicks on the img elements.
+window.addEventListener('click', openDoor());
+//Write a function that checks whether or not 
