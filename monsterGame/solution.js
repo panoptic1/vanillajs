@@ -75,7 +75,7 @@ app.innerHTML = '<div class="row">' + monsters.map(function (monster) {
     var html =
         '<div class="grid">' +
         //add a data- attribute to target the pictures of each monster
-        '<img id="pic" alt="' + door + '" src="' + door + '.svg" data-monster="' + monster + '">' +
+        '<img class="pic" alt="' + door + '" src="' + door + '.svg" data-monster="' + monster + '">' +
         '</div>';
     console.log(html);
     return html;
@@ -83,9 +83,31 @@ app.innerHTML = '<div class="row">' + monsters.map(function (monster) {
 }).join('') + '</div>';
 
 //Write a function that 'opens the door' and reveals the image behind it
-function openDoor(){
-    var monster = elem
+function openDoor(e){
+    console.log(e);
+    var image = this.closest(`[data-monster]`)
+    // console.log(event.target);
+    //console.log(image);
+    //If the if the data-monster value = sock, then reveal the sock and end the game
+    var selectedImage = image.getAttribute(`data-monster`)
+
+    if (selectedImage === "sock"){
+        image.src = selectedImage + ".svg"
+    } else {
+        image.src = selectedImage + ".svg"
+    }
+    //Else, show the monster
+    
 }
+
+var elem = document.querySelectorAll(`img`);
 //Create an event listener with elem.closest that listens for user clicks on the img elements.
-window.addEventListener('click', openDoor());
+
+for (var i = 0; i < elem.length; i++){
+    elem[i].addEventListener('click', openDoor)
+}
+
+// elem.forEach(item => {
+//     item.addEventListener('click', openDoor)
+// })
 //Write a function that checks whether or not 
