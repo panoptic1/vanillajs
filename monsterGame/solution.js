@@ -75,7 +75,7 @@ app.innerHTML = '<div class="row">' + monsters.map(function (monster) {
     var html =
         '<div class="grid">' +
         //add a data- attribute to target the pictures of each monster
-        '<img class="pic" alt="' + door + '" src="' + door + '.svg" data-monster="' + monster + '">' +
+        '<img aria-live="polite" alt="' + door + '" src="' + door + '.svg" data-monster="' + monster + '">' +
         '</div>';
     console.log(html);
     return html;
