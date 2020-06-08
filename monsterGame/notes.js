@@ -15,4 +15,8 @@ console.log(wrapper);
 var snack = elem.closest('[data-snack]');
 console.log(snack);
 
+function openDoor(){
+    var monster =
+}
+
 window.addEventListener('click', openDoor());
