@@ -34,6 +34,12 @@ var monsters = [
     'sock'
 ];
 
+//The score
+var score = 0
+
+//The wins
+var wins = 0
+
 //The door
 var door = `door`
 
@@ -70,22 +76,35 @@ var shuffle = function (array) {
 // Shuffle the monsters array
 shuffle(monsters);
 
-// Create the HTML and inject it into the DOM
-app.innerHTML = '<div class="row">' + monsters.map( function ( monster, index ) { //parameters for map are slightly different
-    var html =
-        '<div class="grid" aria-live="polite">' +
-            //add a button so that the pictures are focusable. Not sure about using the index? How does this target pic?
-            '<button data-monster-id="' + index +'">' +
-                //add some alt text to give screen readers something to read
-                '<img alt="Click the door to find out what is behind it!" src="door.svg">' +
-            '</button>' +
-        '</div>';
+//Put the entire initial markup rendering into a function so that we can reset the game later
+function startGame(){
+   // Create the HTML and inject it into the DOM
+    app.innerHTML = '<div class="row">' + monsters.map( function ( monster, index ) { //parameters for map are slightly different
+        var html =
+            '<div class="grid" aria-live="polite">' +
+                //add a button so that the pictures are focusable. Not sure about using the index? How does this target pic?
+                '<button data-monster-id="' + index +'">' +
+                    //add some alt text to give screen readers something to read
+                    '<img alt="Click the door to find out what is behind it!" src="door.svg">' +
+                '</button>' +
+            '</div>';
+    score = 0;
     return html;
 
-}).join('') + '</div>';
+    }).join('') + '</div>' +
+                    '<div id="scoreboard" class="row">' +
+                        `<span id=score>Score: ${score} </span>` + 
+                        `<span id=wins>Wins: ${wins} </span>` +
+                        `<span id=restart></span>`
+                    '</div>'; 
+}
+
+startGame();
+
+// Create the HTML and inject it into the DOM
 
 var clickHandler = function (event) {
-    console.log("Initiate click handling sequence!");
+    
     //check if clicked element or its parent has a [data-monster-id] attribute
     var monster = event.target.closest('[data-monster-id]');
     
@@ -99,6 +118,25 @@ var clickHandler = function (event) {
     //This will REPLACE the button, so the content cannot be clicked again
     //Use the id to get the monster from our shuffled array
     monster.parentNode.innerHTML = '<img alt="' + monsters[id] + '" src="' + monsters[id] + '.svg">'
+
+    //run the tallyScore function on every click to either increment the score or end the game. 
+    tallyScore(monsters[id]);
+}
+
+function tallyScore(clickedMonster){
+    //access the scoreboard
+    var scoreboard = document.querySelector('#score');
+    var wins = document.querySelector('#wins');
+    var restart = document.querySelector('#restart');
+    
+    if (clickedMonster !== `sock`){
+        score++;
+        scoreboard.textContent = "Score: " + score;
+    } 
+    else {
+        restart.innerHTML = `<button id="restart">Game over! Try again?</button>`
+        restart.addEventListener('click', startGame, false);
+        }
 }
 
 //listen for click events
