@@ -34,8 +34,8 @@ var monsters = [
     'sock'
 ];
 
-//The wins
-var wins = 0
+//The score
+var found;
 
 // Get the #app element
 var app = document.querySelector('#app');
@@ -74,8 +74,11 @@ function startGame(){
     shuffle(monsters);
 
    // Create the HTML and inject it into the DOM
-    app.innerHTML = '<div class="row">' + monsters.map( function ( monster, index ) { //parameters for map are slightly different
-        var html =
+    app.innerHTML =  
+        `<p>Try to click all of the monsters, but watch out for the socks!<p>` +
+        '<div class="row">' + 
+        monsters.map( function ( monster, index ) { //parameters for map are slightly different
+            var html =
             '<div class="grid" aria-live="polite">' +
                 //add a button so that the pictures are focusable. Not sure about using the index? How does this target pic?
                 '<button data-monster-id="' + index +'">' +
@@ -83,15 +86,11 @@ function startGame(){
                     '<img alt="Click the door to find out what is behind it!" src="door.svg">' +
                 '</button>' +
             '</div>';
-    score = 0;
+        '</div>'
+    found = 0;
     return html;
 
-    }).join('') + '</div>' +
-                    '<div id="scoreboard" class="row">' +
-                        `<span id=score>Score: ${score} </span>` + 
-                        `<span id=wins>Wins: ${wins} </span>` +
-                        `<span id=restart></span>`
-                    '</div>'; 
+    }).join('')  
 }
 
 startGame();
@@ -108,7 +107,6 @@ var clickHandler = function (event) {
     
     //Get the monster's index in the array
     var id = monster.getAttribute('data-monster-id');
-    console.log(id);
     
     //Update the HTML for the button's parent element
     //This will REPLACE the button, so the content cannot be clicked again
@@ -126,19 +124,33 @@ function tallyScore(clickedMonster){
     var restart = document.querySelector('#restart');
     
     if (clickedMonster !== `sock`){
-        score++;
-        scoreboard.textContent = "Score: " + score;
-        if (score === 11){
-            wins++;
-            gamesWon.textContent = "Wins: " + wins;
-            restart.innerHTML = `<button>You win! Try again?</button>`
-            restart.addEventListener('click', startGame, false);
+        found++;
+        console.log(found, clickedMonster);
+        if (found === 11){
+            renderWon();
         }
     } 
     else {
-        restart.innerHTML = `<button>Game over! Try again?</button>`
-        restart.addEventListener('click', startGame, false);
+        console.log(clickedMonster);
+        console.log(found);
+        renderLost();
         }
+}
+
+function renderWon(){
+    app.innerHTML = `<iframe src="https://giphy.com/embed/9rMvwuIpMBKU0" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneypixar-pixar-disney-monsters-university-9rMvwuIpMBKU0">via GIPHY</a></p>` +
+                            `<button id="restart">You win! Try again?</button>` +
+                            `<h2>You win! Let's have a monster party!</h2>`
+            var button = document.querySelector('#restart');
+            button.addEventListener('click', startGame, false);
+}
+
+function renderLost(){
+    app.innerHTML = `<iframe src="https://giphy.com/embed/potR1By5lwDUA" width="480" height="351" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/funny-fixed-dallas-potR1By5lwDUA">via GIPHY</a></p>` +
+                        `<button id="restart">Game over! Try again?</button>` +
+                        `<h2>You've been contaminated by a sock! Game over!</h2>`
+    var button = document.querySelector('#restart');
+    button.addEventListener('click', startGame, false);
 }
 
 //listen for click events

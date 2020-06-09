@@ -84,10 +84,11 @@ app.innerHTML = '<div class="row">' + monsters.map(function (monster) {
 
 //Write a function that 'opens the door' and reveals the image behind it
 function openDoor(e){
-    console.log(e);
+    //console.log(e);
     var image = this.closest(`[data-monster]`)
     // console.log(event.target);
-    //console.log(image);
+    // console.log(this);
+    console.log(image);
     //If the if the data-monster value = sock, then reveal the sock and end the game
     var selectedImage = image.getAttribute(`data-monster`)
 
@@ -102,6 +103,7 @@ function openDoor(e){
 
 var elem = document.querySelectorAll(`img`);
 //Create an event listener with elem.closest that listens for user clicks on the img elements.
+
 
 for (var i = 0; i < elem.length; i++){
     elem[i].addEventListener('click', openDoor)
