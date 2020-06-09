@@ -73,13 +73,12 @@ var shuffle = function (array) {
 
 };
 
-// Shuffle the monsters array
-shuffle(monsters);
 
 //Put the entire initial markup rendering into a function so that we can reset the game later
 function startGame(){
-    // // Shuffle the monsters array
-    // shuffle(monsters);
+    // Shuffle the monsters array
+    shuffle(monsters);
+    
    // Create the HTML and inject it into the DOM
     app.innerHTML = '<div class="row">' + monsters.map( function ( monster, index ) { //parameters for map are slightly different
         var html =
