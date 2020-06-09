@@ -78,6 +78,8 @@ shuffle(monsters);
 
 //Put the entire initial markup rendering into a function so that we can reset the game later
 function startGame(){
+    // // Shuffle the monsters array
+    // shuffle(monsters);
    // Create the HTML and inject it into the DOM
     app.innerHTML = '<div class="row">' + monsters.map( function ( monster, index ) { //parameters for map are slightly different
         var html =
@@ -126,12 +128,18 @@ var clickHandler = function (event) {
 function tallyScore(clickedMonster){
     //access the scoreboard
     var scoreboard = document.querySelector('#score');
-    var wins = document.querySelector('#wins');
+    var gamesWon = document.querySelector('#wins');
     var restart = document.querySelector('#restart');
     
     if (clickedMonster !== `sock`){
         score++;
         scoreboard.textContent = "Score: " + score;
+        if (score === 11){
+            wins++;
+            gamesWon.textContent = "Wins: " + wins;
+            restart.innerHTML = `<button id="restart">You win! Try again?</button>`
+            restart.addEventListener('click', startGame, false);
+        }
     } 
     else {
         restart.innerHTML = `<button id="restart">Game over! Try again?</button>`
