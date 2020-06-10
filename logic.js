@@ -17,7 +17,7 @@ if (chapters.length > 0) {
         `<h2>Table of Contents</>` +
         `<ol>` +
             Array.prototype.slice.call(chapters).map( function (chapter) {
-                return `<li href="#` + chapter.id + `">` + chapter.textContent + `</a></li>`;
+                return `<li><a href="#` + chapter.id + `">` + chapter.textContent + `</a></li>`;
             }).join('') +
         `</ol>`;
 }
