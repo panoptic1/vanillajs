@@ -34,8 +34,6 @@ var monsters = [
     'sock'
 ];
 
-//The score
-var found;
 
 // Get the #app element
 var app = document.querySelector('#app');
@@ -118,21 +116,14 @@ var clickHandler = function (event) {
 }
 
 function tallyScore(clickedMonster){
-    //access the scoreboard
-    var scoreboard = document.querySelector('#score');
-    var gamesWon = document.querySelector('#wins');
-    var restart = document.querySelector('#restart');
     
     if (clickedMonster !== `sock`){
         found++;
-        console.log(found, clickedMonster);
         if (found === 11){
             renderWon();
         }
     } 
     else {
-        console.log(clickedMonster);
-        console.log(found);
         renderLost();
         }
 }
