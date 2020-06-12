@@ -1,10 +1,10 @@
 //Solution derived from Chris Ferdinandi, Vanilla JS Academy
 
 //Turn the node List of h2 elements into an actual array.
-chapters = document.querySelectorAll('h2');
+var chapters = document.querySelectorAll('h2');
 
 //Target the table-of-contents div box
-tableOfContents = document.querySelector("#table-of-contents");
+var tableOfContents = document.querySelector("#table-of-contents");
 console.log(tableOfContents);
 
 //Make sure that there is at least one 'chapter'.
