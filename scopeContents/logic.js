@@ -2,6 +2,7 @@
     console.log("This is inside of an IIFE.");
 })();
 
+//Wrap everything from the last assignment into a function
 var generateContents = function () {
     //Turn the node List of h2 elements into an actual array.
 var chapters = document.querySelectorAll('h2');
@@ -30,7 +31,7 @@ if (chapters.length > 0) {
                 return `<li><a href="#` + chapter.id + `">` + chapter.textContent + `</a></li>`;
             }).join('') +
         `</ol>`;
+    }
 }
-}
-
+//Run the function
 generateContents();
