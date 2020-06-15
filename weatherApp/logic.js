@@ -30,6 +30,7 @@ function getWeatherInfo(){
             return Promise.reject(response);
         }
         }).then( function (data){
+        city = data.city;
         postal = data.postal;
         state = data.state;
         country = data.country; 
@@ -47,11 +48,13 @@ function getWeatherInfo(){
             }).then ( function ( data ){
                 
                 rawTemp = data.data[0].temp;
-                city = data.data[0].city_name;
                 windSpeed = data.data[0].wind_spd;
                 windDirection = data.data[0].wind_cdir_full;
                 convertTemp();
                 
+        }).catch(function (error) {
+            app.textContent = `I'm forecasting a trip to the app store for a better weather app.`;
+            console.warn(error);
         })
         
     });
