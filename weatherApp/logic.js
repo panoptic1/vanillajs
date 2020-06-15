@@ -66,7 +66,7 @@ getWeatherInfo();
 //convert the given temperature from celsius to fahrenheit
 function convertTemp(){
     console.log("Let's convert that temp!");
-    tempFahrenheit = (rawTemp * 9 / 5) + 32;
+    tempFahrenheit = (sanitizeHTML(rawTemp) * 9 / 5) + 32;
     renderWeather();
 }
 
@@ -74,10 +74,9 @@ function convertTemp(){
 //sanitize the data and render it in the UI
 function renderWeather(){
     var html = `
-    <p>The temperature in ${city} right now is ${tempFahrenheit} fahrenheit.
-    Winds are currently coming out of the ${windDirection} at around ${windSpeed} miles per hour.</p>
+    <p>The temperature in ` + sanitizeHTML(city) + ` right now is ` + tempFahrenheit + ` fahrenheit.
+    Winds are currently coming out of the ` + sanitizeHTML(windDirection) + ` at around ` + sanitizeHTML(windSpeed) + ` miles per hour.</p>
     `
-    sanitizeHTML(html);
 
     app.innerHTML = html;
 
