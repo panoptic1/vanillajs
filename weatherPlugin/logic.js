@@ -93,7 +93,7 @@ var createForecast = function (options) {
                     settings.windSpeed = data.wind_spd;
                     settings.fahrenheit = (settings.celsius * 9 / 5) + 32;
                     
-                }).then(renderWeather())
+                }).then(renderWeather)
                 .catch(function (error) {
                 app.textContent = `I'm forecasting a trip to the app store for a better weather app.`;
                 console.warn(error);
