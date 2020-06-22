@@ -1,15 +1,9 @@
-console.log(`let's go!`);
-
-/*
-=====================================THE REVEALING MODULE PATTERN================================================
-
-*/
-
 var library = (function(){
 
     //
     //VARIABLES
     //
+    var buttons = document.querySelectorAll(`.btn-blue`);
 
     //Holds our public methods
     var methods = {};
@@ -22,7 +16,8 @@ var library = (function(){
     //@returns {Array}
 
     methods.arrayify = function (list) {
-        Array.prototype.slice.call(list)
+        var newArray = Array.prototype.slice.call(list)
+        console.log(newArray);
         return newArray;
     };
 
@@ -38,11 +33,24 @@ var library = (function(){
     //get all elements in the DOM as an array
     //@param {string} class, element, id
     //@return {Array} array of elements
-    method.arrayifyElements = function (selector) {
+    methods.arrayifyElements = function (selector) {
         var list = document.querySelectorAll(selector);
         var elemArray = Array.prototype.slice.call(list);
         return elemArray; 
-    }
+    };
+
+    //add a class to all elements in an array
+    //@param {string, array} class to be added, array of elements
+    //@return {Array} array of elements with new class
+    methods.classifyArrayElements = function (class, array) {
+        var classyArray = array.forEach(element => {
+            element.classlist.add(class);
+            console.log(element.classlist);
+            return classyArray;
+        });
+    };
+
+    methods.classifyArrayElements(`bingo`, buttons);
     
     //return public methods
     return methods;
