@@ -1,61 +1,69 @@
-var library = (function(){
+var $ = (function(){
 
-    //
-    //VARIABLES
-    //
-    var buttons = document.querySelectorAll(`.btn-blue`);
 
-    //Holds our public methods
-    var methods = {};
+    /**
+     * Create the constructor
+     * @param {String} selector The selector to use
+     * 
+     */
+    
+     var Constructor = function ( selector ) {
+        this.elems = document.querySelectorAll(selector);
+    };
 
     //
     //METHODS
     //
-    //turn an array-like object into an array
-    //@param {nodeList} list
-    //@returns {Array}
-
-    methods.toArray = function (list) {
-        return Array.prototype.slice.call(list);
-    };
-
-    //get the first matching element in the dom
-    //@param {string} selector (the selector)
-    //@return {Node} (the matching element)
-    methods.get = function(selector){
-        return document.querySelector(selector);
-    };
-
-    //get all elements that match a selector
-    //@param {Array} class, element, id
-    //@return {Array} array of elements
-    methods.getAll = function (selector) {
-        return methods.toArray(document.querySelectorAll(selector));
-    };
-
-    //add a class to all elements that match a selector
-    //@param {Array} elems  The elements
-    //@param {String} className     The class to be added
-    methods.addClass = function (elems, className) {
-        elems.forEach(function (elem){
-            elem.classList.add(className);
-        })
-        
-    };
 
     /**
-     * remove a class from all elements in an array
-     * @param {Array} elems     The elements
-     * @param {String} className    The class to remove
+     * Get an immutable copy of the matching elements
+     * @ return {Array} the elemnents
      */
 
-    methods.removeClass = function (elems, className) {
-        elems.forEach(function (elem) {
-            elem.classList.remove(className);
-        });
-    }
-    
+     Constructor.prototype.items = function () {
+        return Array.prototype.slice.call(this.elems)
+     };
+
+    /**
+     * Get the first item in a set of elements
+     * @return {*} The first item
+     */
+
+     Constructor.prototype.first = function () {
+        return this.elems[this.elems.length - 1];
+     };
+
+    /**
+     * Add a class to every item in a set of elements
+     * @param {String} className    (the class to add)
+     */
+
+     Constructor.prototype.addClass = function (className) {
+         this.items().forEach(function (elem) {
+            elem.classList.add(className);
+         });
+     }
+
+    /**
+     * Remove a class from every item in a set of elements
+     * @param {String} className (the class to remove)
+     */
+
+     Constructor.prototype.removeClass = function (className) {
+         this.items().forEach(function (elem) {
+             elem.classList.add(className);
+         });
+     }
+
+
     //return public methods
-    return methods;
+    return Constructor;
 
 })();
+
+//Create new instantiations of the library
+     
+var btns = new $('button');
+var list = new $('ul');
+console.log(btns);
+console.log(list);
