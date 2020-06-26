@@ -63,9 +63,8 @@ var $ = (function(){
 
 })();
 
-//Create new instantiations of the library
-     
 var btns = new $('button');
-var list = new $('ul');
-console.log(btns);
-console.log(list);
+
+btns.addClass(`btn-purple`).removeClass('btn-blue');
+
+console.log(btns.items())
