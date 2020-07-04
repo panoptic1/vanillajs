@@ -58,6 +58,7 @@ var loadData = function () {
     var saved = localStorage.getItem(storageID);
     if (!saved) return;
     saved = JSON.parse(saved);
+    console.log(saved);
 
     //Get all of the form fields
     var fields = document.querySelectorAll(`#save-me input, #save-me textarea`);
@@ -73,6 +74,7 @@ var loadData = function () {
 
         //set the field value to the data saved in local storage
         field.value = saved[id];
+        console.log(id);
     });
 
 };

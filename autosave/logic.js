@@ -46,11 +46,12 @@ var inputHandler = function ( event ) {
  */
 var loadData = function () {
     //Get all of the form fields
-    var fields = document.querySelectorAll(`#save-me input`, `#save-me textarea`);
+    var fields = document.querySelectorAll("#save-me input, #save-me textarea");
+    console.log(fields);
 
     //loop through each field and load any unsaved data in localStorage
     Array.prototype.slice.call(fields).forEach(function (field){
-
+        
         //if the field has no usable id, then skip it
         var id = getID(field);
         if (!id) return;
@@ -68,7 +69,7 @@ var loadData = function () {
  */
 var clearData = function () {
     //Get all of the form fields
-    var fields = document.querySelectorAll(`#save-me input`, `#save-me textarea`);
+    var fields = document.querySelectorAll(`#save-me input, #save-me textarea`);
 
     //loop through each field and load any unsaved data in localStorage
     Array.prototype.slice.call(fields).forEach(function (field){
