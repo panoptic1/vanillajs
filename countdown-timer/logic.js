@@ -1,6 +1,3 @@
-console.log("Let's do this!");
-
-
 //create a button variable to be invoked when the timer reaches 0
 var button = document.createElement('button')
 button.id = `restart`
@@ -30,7 +27,7 @@ var timer = new Goo (`#app`, {
         time : 5
     },
     template : function (props) {
-        var html = `<h1> You have ${props.time} seconds until the button of eternal return reveals itself.</h1>`;
+        var html = `<h1> You have ${props.time} seconds until the button reveals itself.</h1>`;
         return html;
     }
 });
@@ -52,7 +49,7 @@ var doSomething = function () {
         //clear the interval if the timer reaches 0 and render the button of eternal return
         if (timer.data.time === 0) {
             window.clearInterval(update);
-            timer.data.time = 60;
+            timer.data.time = 5;
             timer.elem.appendChild(button);
             button.addEventListener(`click`, doSomething);
         }
@@ -62,8 +59,7 @@ var doSomething = function () {
 
 var update = window.setInterval( function () {
 
-    //log the value of 'time' to the console
-    //console.log(timer.data.time);
+    console.log(update);
     
     //decrement 'time' each time that the interval fires
     timer.data.time--;
@@ -72,7 +68,7 @@ var update = window.setInterval( function () {
     //clear the interval if the timer reaches 0 and render the button of eternal return
     if (timer.data.time === 0) {
         window.clearInterval(update);
-        timer.data.time = 60;
+        timer.data.time = 5;
         timer.elem.appendChild(button);
         button.addEventListener(`click`, doSomething);
     }
