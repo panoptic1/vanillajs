@@ -48,6 +48,7 @@ console.log("Let's go!");
 
  //Render a new UI
  Rue.prototype.render = function () {
+    console.log(Rue.prototype);
     this.elem.innerHTML = this.template(this.data)
  }
 
