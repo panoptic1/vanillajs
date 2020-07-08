@@ -15,7 +15,15 @@
      this.elem.innerHTML = this.template(this.data)
  }
 
- var duration = 2;
+ var duration = 5;
+
+ var clickHandler = function (event) {
+    //Only if the restart button was clicked
+    if (!event.target.hasAttribute(`data-restart-timer`)) return;
+    console.log("You clicked!");
+    duration = 5;
+    startTimer();
+};
 
  //Create the actual timer component
  var app = new Rue (`#app`, {
@@ -78,11 +86,4 @@
     startTimer();
 
     document.addEventListener(`click`, clickHandler);
-
-    var clickHandler = function (event) {
-        //Only if the restart button was clicked
-        if (!event.target.hasAttribute(`data-restart-timer`)) return;
-        console.log("You clicked!");
-        startTimer();
-    };
 
