@@ -1,5 +1,3 @@
-console.log("Let's go!");
-
 //===========WTF IS STATE?===================
 //STATE is data.
 //There is a time-bound aspect to it:
@@ -48,8 +46,7 @@ console.log("Let's go!");
 
  //Render a new UI
  Rue.prototype.render = function () {
-    console.log(Rue.prototype);
-    this.elem.innerHTML = this.template(this.data)
+    this.elem.innerHTML = this.template(this.data);
  }
 
  //The list of literary titans
@@ -67,17 +64,17 @@ console.log("Let's go!");
                     return `<li>` + author + `</li>`
                 }).join('') +
             `</ul>`;
-        console.log(html);
+        //console.log(html);
         return html;
      }
  });
-
+console.log(app);
  //Render the list
  app.render();
 
  //Add another author to the titans array
  app.data.authors.push(`WEB DuBois`);
- console.log(app.data.authors);
+ //console.log(app.data.authors);
 
 
  //+++++++++++++++++++++   window.setInterval()   +++++++++++++++++++++++++++++++
@@ -90,7 +87,7 @@ console.log("Let's go!");
  var countDown = window.setInterval( function () {
 
     //log the count value to the console
-    console.log(count);
+    //console.log(count);
 
     //Decrease count by 1
     count--;
@@ -98,6 +95,43 @@ console.log("Let's go!");
     //If the value of count reaches zero, clear the interval
     if (count === 0) {
         window.clearInterval(countDown);
-        console.log(`I am so done counting down.`)
+        //console.log(`I am so done counting down.`)
     }
  }, 1000 );
+
+ //======================== +++ parseInt() +++ ===============================
+ //Used to turn a string into a number
+ //The first argument is the string that you want to parse into a number, the second
+ var numeral = parseInt(`462`, 10); //returns 462
+
+ var alphaNumeral = parseInt(`46 and 2`, 10); //returns 46 >>> I guess after the first integer gets interrupted then it stops.
+
+ var decimal = parseInt(`462.12`, 10); //returns 462
+
+ //======================== +++ toString() +++ ====================================
+//Used to turn a number (or booleans) into a string.
+
+var pi = 3.14
+var piString = pi.toString();
+console.log(piString);
+var tru = true.toString();
+console.log(tru);
+
+//========================= +++ String.padStart() +++ ==============================
+//Adds leading characters to a string in the event that a minimum length has not been met for formatting purposes.
+//It accepts two arguments:
+//  1st: the length that the string should be
+//  2nd: the characters that should be added to the beginning of the string to 'spackle' it if it doesn't meet the first parameter
+
+//returns '03'
+var hour3 = `3`;
+var padded3 = hour3.padStart(2, `0`);
+console.log(padded3); //returns '03'
+
+var hour12 = `12`;
+var padded12 = hour12.padStart(12, `0`);
+console.log(padded3); //returns '12'
+
+
+
+

@@ -82,6 +82,17 @@ var clickHandler = function (event) {
 
 };
 
+var getTimerHTML = function ( props ) {
+
+    //get the minutes and seconds
+    var minutes = parseInt(props.time / 60, 10);
+    var seconds = props.time % 60; 
+
+    //return the formatted time
+    return minutes.toString() + `:` + seconds.toString().padStart(2, `0`);
+
+};
+
 /**
 * Create the timer component
 * @param  {Object} props The component options
@@ -98,7 +109,7 @@ var app = new Rue('#app', {
 		}
 
 		// Otherwise, show the current time
-		return props.time;
+		return getTimerHTML(props);
 
         }
 });
