@@ -39,7 +39,10 @@ var stopTimer = function () {
 /**
 * Start the timer
 */
-var startTimer = function () {
+var startTimer = function (event) {
+
+    //check to see if the correct button was pushed
+    if (!event.target === document.querySelector('data-start-pause')) return
 
 	// Reset app data
 	app.data.time = duration;
@@ -83,14 +86,23 @@ var clickHandler = function (event) {
 };
 
 var getTimerHTML = function ( props ) {
+    
     var html;
+    
+    //declare variables to be used in the html
+    var minutes = parseInt(props.time / 60, 10).toString();
+    var seconds = (props.time % 60).toString().padStart(2, `0`);
 
-    //get the minutes and seconds
-    var minutes = parseInt(props.time / 60, 10);
-    var seconds = props.time % 60; 
+    html = `
+    <p>${minutes}:${seconds}</p>
+    <button data-start-pause>Start</button><button data-restart-timer>Restart</button>
+    `;
+
+    //console.log(minutes);
+    //console.log(seconds);
 
     //return the formatted time
-    return minutes.toString() + `:` + seconds.toString().padStart(2, `0`);
+    return html; 
 
 };
 
@@ -119,5 +131,7 @@ var app = new Rue('#app', {
 // Inits & Events
 //
 
-startTimer();
+
+app.render();
 document.addEventListener('click', clickHandler);
+document.addEventListener('click', startTimer);
