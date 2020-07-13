@@ -32,20 +32,69 @@ Rue.prototype.render = function () {
 * Stop the timer
 */
 var stopTimer = function () {
-	if (app.data.time > 0) return;
+	
 	clearInterval(timer);
 };
 
 /**
 * Start the timer
+* @param {Event} The Event object
 */
 var startTimer = function (event) {
 
-    //check to see if the correct button was pushed
-    if (!event.target === document.querySelector('data-start-pause')) return
+    if (!event.target.hasAttribute(`data-start-timer`)) return;
+
+    if (app.data.time < 1) {
+        restartTimer();
+        return;
+    }
+
+    //unpause the timer
+    app.data.paused = false;
+
+    //Render the initial UI
+    app.render();
+
+    //Stop any already-running timers
+    stopTimer();
+
+	// Start the countdown timer
+	timer = setInterval(countdown, 1000);
+
+};
+
+/**
+* Pause the timer
+* @param {Event} The Event object
+*/
+var pauseTimer = function (event) {
+
+    if (!event.target.hasAttribute(`data-pause-timer`)) return;
+
+    //stop the countdown timer
+    stopTimer();
+
+    //set the timer to paused.true
+    app.data.paused = true;
+
+    app.render();
+
+};
+
+/**
+* Restart the timer
+* @param {Event} The Event object
+*/
+var restartTimer = function (event) {
+
+    if (!event.target.hasAttribute(`data-restart-timer`)) return;
+
+    //stop any current running timers.
+    stopTimer();
 
 	// Reset app data
-	app.data.time = duration;
+    app.data.time = duration;
+    app.data.paused = false;
 
 	// Render the initial UI
 	app.render();
@@ -61,13 +110,14 @@ var startTimer = function (event) {
 var countdown = function () {
 
 	// Reduce the time by 1 second
-	app.data.time--;
+    app.data.time--;
+    
+    //If timer should be stopped, stop it
+    if (app.data.time < 1) {
+        stopTimer();
+    }
 
-	// Check if the timer should be stopped
-	stopTimer();
-
-	// Update the UI
-	app.render();
+    app.render();
 
 };
 
@@ -76,33 +126,30 @@ var countdown = function () {
 * @param  {Event} event The Event object
 */
 var clickHandler = function (event) {
-
-	// Only run if the restart button was clicked
-	if (!event.target.hasAttribute('data-restart-timer')) return;
-
-	// Start the timer
-	startTimer();
+	
+    startTimer(event);
+    pauseTimer(event);
+    restartTimer(event);
 
 };
 
 var getTimerHTML = function ( props ) {
-    
     var html;
-    
-    //declare variables to be used in the html
-    var minutes = parseInt(props.time / 60, 10).toString();
-    var seconds = (props.time % 60).toString().padStart(2, `0`);
 
-    html = `
-    <p>${minutes}:${seconds}</p>
-    <button data-start-pause>Start</button><button data-restart-timer>Restart</button>
-    `;
-
-    //console.log(minutes);
-    //console.log(seconds);
+    //get the minutes and seconds
+    var minutes = parseInt(props.time / 60, 10);
+    var seconds = props.time % 60; 
 
     //return the formatted time
-    return html; 
+    var html = minutes.toString() + `:` + seconds.toString().padStart(2, `0`) +
+    `<p>` + 
+        //this is an if statement. Think of the '?' as being the if, only it comes after the condition
+        (props.paused ? `<button data-start-timer>Start</button>`
+                      : `<button data-pause-timer>Pause</button>`) +
+                        `<button data-restart-timer>Restart</button>` +
+    `</p>`
+
+    return html;
 
 };
 
@@ -112,7 +159,10 @@ var getTimerHTML = function ( props ) {
  */
 var app = new Rue('#app', {
 	data: {
-	time: duration
+        
+        time: duration,
+        //add a property of paused to handle when the button gets paused. Set it to a boolean. 
+        paused: true
 	},
 	template: function (props) {
 
@@ -131,7 +181,7 @@ var app = new Rue('#app', {
 // Inits & Events
 //
 
-
+//render the initial UI
 app.render();
+
 document.addEventListener('click', clickHandler);
-document.addEventListener('click', startTimer);
