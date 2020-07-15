@@ -68,9 +68,11 @@
         return html;
      }
  });
-console.log(app);
+
+//console.log(app);
  //Render the list
  app.render();
+ console.log(Rue.prototype);
 
  //Add another author to the titans array
  app.data.authors.push(`WEB DuBois`);
@@ -113,9 +115,9 @@ console.log(app);
 
 var pi = 3.14
 var piString = pi.toString();
-console.log(piString);
+//console.log(piString);
 var tru = true.toString();
-console.log(tru);
+//console.log(tru);
 
 //========================= +++ String.padStart() +++ ==============================
 //Adds leading characters to a string in the event that a minimum length has not been met for formatting purposes.
@@ -126,71 +128,127 @@ console.log(tru);
 //returns '03'
 var hour3 = `3`;
 var padded3 = hour3.padStart(2, `0`);
-console.log(padded3); //returns '03'
+//console.log(padded3); //returns '03'
 
 var hour12 = `12`;
 var padded12 = hour12.padStart(12, `0`);
-console.log(padded3); //returns '12'
+//console.log(padded3); //returns '12'
 
 //============================ +++++ PROXIES +++++ ========================================
 //A proxy allows you to detect whenever someone gets, sets, or updates a property on an object, and run code when they do
 
 //handler object
-var handler = {
-    get: function (obj, prop) {
+// var handler = {
+//     get: function (obj, prop) {
 
-        //Do stuff when someone gets a property
-        console.log(`The value of ` + prop + ` is ` + obj[prop] +`.`);
+//         //Do stuff when someone gets a property
+//         //console.log(`The value of ` + prop + ` is ` + obj[prop] +`.`);
 
-        //Return the value
-        //This is what happens by default when you don't have a Proxy
-        return obj[prop];
+//         //Return the value
+//         //This is what happens by default when you don't have a Proxy
+//         return obj[prop];
 
-    },
-    set: function (obj, prop, value) {
+//     },
+//     set: function (obj, prop, value) {
 
-        //Do stuff when someone sets a property
-        console.log('Set ' + prop + ` to ` + value +`.`)
+//         //Do stuff when someone sets a property
+//         //console.log('Set ' + prop + ` to ` + value +`.`)
 
-        //Set the property
-        //This is what happens by default when you don't have a Proxy
-        obj[prop] = value;
+//         //Set the property
+//         //This is what happens by default when you don't have a Proxy
+//         obj[prop] = value;
 
-        //Indicate success
-        //This is required
-        return true;
+//         //Indicate success
+//         //This is required
+//         return true;
 
-    },
-    deleteProperty: function (obj, prop) {
+//     },
+//     deleteProperty: function (obj, prop) {
 
-        //Do stuff when someone deletes a property
-        console.log(`Deleted ` + prop);
+//         //Do stuff when someone deletes a property
+//         //console.log(`Deleted ` + prop);
 
-        //Delete the property
-        delete obj[prop];
+//         //Delete the property
+//         delete obj[prop];
 
-        //Indicate success
-        //This is required
-        return true;
+//         //Indicate success
+//         //This is required
+//         return true;
 
-    },
+//     },
+// };
+
+// //Consider the Teenage Mutant Ninja Turtles and their weapons
+// var turtles = {
+//     leonardo : `katanas`,
+//     michaelangelo : `nunchaku`,
+//     raphael : `sai`,
+//     donatello : `bo`
+// };
+
+// // //Create a Proxy
+// var tmntProxy = new Proxy ( turtles, handler );
+
+// //Get/set some data
+// tmntProxy.april = `camera`;
+// tmntProxy.michaelangelo;
+// delete tmntProxy.raphael;
+
+// //=============================== +++++++ NESTED ARRAYS AND OBJECTS IN PROXIES ++++++++ ====================================
+// //Let's say that you have a Proxy object that contains a 'todos' property with an array of todo items.
+// var data = new Proxy ({
+//     todos: [`observe`, `study`, `engage`, `slay`, `conquer`]    
+// }, {
+//     get: function (obj, prop) {
+//         console.log(`got it!`);
+//         return obj[prop];
+//     },
+//     set: function (obj, prop, value) {
+//         console.log(`set it!`);
+//         obj[prop] = value;
+//         return true;
+//     }
+// });
+
+// data.todos.push(`rest`);
+// console.log(data.todos[5]);
+
+//This triggers the 'get' but not the 'set' function. The reason for this:
+//The proxy only looks for changes to first-level properties of the object. Objects or arrays within those properties
+//aren't Proxies themselves.
+//this WOULD trigger the setter: data.todos = [`New Array`];
+
+//(I do not understand any of this at all.)
+
+//But! The solution to the problem that I do not yet understand:
+//Step 1: Move the handler into a function that returns the handler object (calls it recursively)
+
+var handler = function () {
+    return {
+        get: function (obj, prop) {
+            console.log(`got it!`);
+            //next, check if obj[prop] is an array or an object
+            if([`[object Object]`, `[object Array]`].indexOf(Object.prototype.toString.call(obj[prop])) > -1) { //WHAT?!?!?!
+                return new Proxy (obj[prop], handler());
+            }
+            return obj[prop];
+        },
+        set: function (obj, prop, value) {
+            console.log(`set it!`);
+            obj[prop] = value;
+            return true;
+        }
+    };
 };
 
-//Consider the Teenage Mutant Ninja Turtles and their weapons
-var turtles = {
-    leonardo : `katanas`,
-    michaelangelo : `nunchaku`,
-    raphael : `sai`,
-    donatello : `bo`
-};
+var data = new Proxy ({
+    todos: [`come`, `see`, `conquer`]
+}, handler());
 
-//Create a Proxy
-var tmntProxy = new Proxy ( turtles, handler );
+data.todos.push('die');
 
-//Get/set some data
-tmntProxy.april = `camera`;
-tmntProxy.michaelangelo;
-delete tmntProxy.raphael;
+
+
 
 
 
