@@ -1,0 +1,19 @@
+/**
+ * Grid Layout
+ */
+ @media (min-width: 40em) {
+	.place {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		grid-template-rows: 1fr;
+		grid-column-gap: 2em;
+	}
+}
+
+/**
+ * Responsive Images
+ */
+img {
+	height: auto;
+	max-width: 100%;
+}

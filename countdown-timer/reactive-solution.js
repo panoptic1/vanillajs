@@ -215,3 +215,8 @@ var app = new Rue('#app', {
 
 app.render();
 document.addEventListener('click', clickHandler);
+
+/**
+ * Solution totally canned from Chris Ferdinandi @ gomakethings.com
+ * as part of the Vanilla JavaScript Academy
+ */
