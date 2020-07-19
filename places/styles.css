@@ -1,7 +1,14 @@
+body {
+	margin: 1em auto;
+	max-width: 60em;
+	width: 88%;
+}
+
 /**
- * Grid Layout
+ * Layouts
  */
- @media (min-width: 40em) {
+
+@media (min-width: 40em) {
 	.place {
 		display: grid;
 		grid-template-columns: 1fr 2fr;
@@ -10,10 +17,40 @@
 	}
 }
 
-/**
- * Responsive Images
- */
+.place {
+	margin-bottom: 2em;
+}
+
+
+.place h2 {
+	margin: 0 0 0.5em;
+
+	padding: 0;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
 img {
 	height: auto;
 	max-width: 100%;
+}
+
+/**
+ * Favorites
+ */
+
+ button {
+	background-color: #f7f7f7;
+	border: 1px solid #e5e5e5;
+	color: #272727;
+	font-size: 1.5em;
+	padding: 0 0.5em;
+}
+
+button[aria-pressed="true"] {
+	background-color: #de391f;
+	border-color: #de391f;
+	color: #ffffff;
 }
