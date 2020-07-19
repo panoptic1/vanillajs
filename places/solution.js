@@ -58,7 +58,7 @@ var getPlacesHTML = function (props) {
                     `<p>
                         <em>` + place.location + `</em>
                         <br>
-                        <a href="` + place.url + `">` + place.url + 
+                        <a href="` + place.url + `">` + place.url + `</a>` + 
                         `</p>` +
                 `</div>` +
             `</div>`;
