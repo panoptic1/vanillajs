@@ -310,3 +310,34 @@ With this approach, you should not change the [aria-label] if you’ve used one.
 
 The [aria-pressed] attribute conveys the important information about the button state.
  */
+
+//============================ ABSTRACTION =============================================
+//Abstraction is the process of reducing a set of tasks to a single command.
+//Consider an app where you need to hide some elements in response to a user action:
+
+// // Get the elements to hide
+// var elemsToHide = document.querySelectorAll('.hide-me');
+
+// // Hide the elements
+// Array.from(elemsToHide).forEach(function (elem) {
+// 	elem.setAttribute('hidden', '');
+// });
+
+//To abstract this behavior, you could move it into a hideElems() function.
+
+// var hideElems = function (selector) {
+
+// 	// Get the elements to hide
+// 	var elems = document.querySelectorAll(selector);
+
+// 	// Hide the elements
+// 	Array.from(elems).forEach(function (elem) {
+// 		elem.setAttribute('hidden', '');
+// 	});
+
+// };
+
+//And when you need to hide elements, you can run it like this.
+
+//hideElems('.hide-me');
+
