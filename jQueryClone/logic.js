@@ -65,6 +65,7 @@ var $ = (function(){
 
 var btns = new $('button');
 
-btns.addClass(`btn-purple`).removeClass('btn-blue');
+btns.addClass(`btn-purple`)
+btns.removeClass('btn-blue');
 
 console.log(btns.items())
